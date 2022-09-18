@@ -35,10 +35,10 @@
             this.InstructionLabel = new System.Windows.Forms.Label();
             this.RandomCaptcha = new System.Windows.Forms.Label();
             this.CaptchaBox = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.SignIn = new System.Windows.Forms.Button();
+            this.UserInput = new System.Windows.Forms.TextBox();
+            this.PasswordInput = new System.Windows.Forms.TextBox();
+            this.CaptchaCheck = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.CaptchaBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,53 +94,55 @@
             // 
             // CaptchaBox
             // 
+            this.CaptchaBox.BackgroundImage = global::Sekretariat.Properties.Resources._1;
             this.CaptchaBox.Location = new System.Drawing.Point(172, 257);
             this.CaptchaBox.Name = "CaptchaBox";
             this.CaptchaBox.Size = new System.Drawing.Size(120, 31);
             this.CaptchaBox.TabIndex = 5;
             this.CaptchaBox.TabStop = false;
             // 
-            // button1
+            // SignIn
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(491, 348);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 29);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Zaloguj";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SignIn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SignIn.Location = new System.Drawing.Point(491, 348);
+            this.SignIn.Name = "SignIn";
+            this.SignIn.Size = new System.Drawing.Size(109, 29);
+            this.SignIn.TabIndex = 6;
+            this.SignIn.Text = "Zaloguj";
+            this.SignIn.UseVisualStyleBackColor = true;
+            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
             // 
-            // textBox1
+            // UserInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(315, 64);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(285, 23);
-            this.textBox1.TabIndex = 7;
+            this.UserInput.Location = new System.Drawing.Point(315, 64);
+            this.UserInput.Name = "UserInput";
+            this.UserInput.Size = new System.Drawing.Size(285, 23);
+            this.UserInput.TabIndex = 7;
             // 
-            // textBox2
+            // PasswordInput
             // 
-            this.textBox2.Location = new System.Drawing.Point(315, 104);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(285, 23);
-            this.textBox2.TabIndex = 8;
+            this.PasswordInput.Location = new System.Drawing.Point(315, 104);
+            this.PasswordInput.Name = "PasswordInput";
+            this.PasswordInput.PasswordChar = '*';
+            this.PasswordInput.Size = new System.Drawing.Size(285, 23);
+            this.PasswordInput.TabIndex = 8;
             // 
-            // textBox3
+            // CaptchaCheck
             // 
-            this.textBox3.Location = new System.Drawing.Point(315, 257);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(285, 23);
-            this.textBox3.TabIndex = 9;
+            this.CaptchaCheck.Location = new System.Drawing.Point(315, 257);
+            this.CaptchaCheck.Name = "CaptchaCheck";
+            this.CaptchaCheck.Size = new System.Drawing.Size(285, 23);
+            this.CaptchaCheck.TabIndex = 9;
             // 
             // Secretariat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CaptchaCheck);
+            this.Controls.Add(this.PasswordInput);
+            this.Controls.Add(this.UserInput);
+            this.Controls.Add(this.SignIn);
             this.Controls.Add(this.CaptchaBox);
             this.Controls.Add(this.RandomCaptcha);
             this.Controls.Add(this.InstructionLabel);
@@ -150,7 +152,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Secretariat";
             this.Text = "Sekretariat";
-            this.Load += new System.EventHandler(this.Secretariat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CaptchaBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -165,9 +166,9 @@
         private Label InstructionLabel;
         private Label RandomCaptcha;
         private PictureBox CaptchaBox;
-        private Button button1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private Button SignIn;
+        private TextBox UserInput;
+        private TextBox PasswordInput;
+        private TextBox CaptchaCheck;
     }
 }
