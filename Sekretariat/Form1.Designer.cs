@@ -39,6 +39,9 @@
             this.UserInput = new System.Windows.Forms.TextBox();
             this.PasswordInput = new System.Windows.Forms.TextBox();
             this.CaptchaCheck = new System.Windows.Forms.TextBox();
+            this.addStudent1 = new Sekretariat.AddStudent();
+            this.login1 = new Sekretariat.Login();
+            this.searchStudent1 = new Sekretariat.SearchStudent();
             ((System.ComponentModel.ISupportInitialize)(this.CaptchaBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,11 +137,37 @@
             this.CaptchaCheck.Size = new System.Drawing.Size(285, 23);
             this.CaptchaCheck.TabIndex = 9;
             // 
+            // addStudent1
+            // 
+            this.addStudent1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.addStudent1.Location = new System.Drawing.Point(1, -2);
+            this.addStudent1.Name = "addStudent1";
+            this.addStudent1.Size = new System.Drawing.Size(800, 450);
+            this.addStudent1.TabIndex = 10;
+            // 
+            // login1
+            // 
+            this.login1.Location = new System.Drawing.Point(1, -2);
+            this.login1.Name = "login1";
+            this.login1.Size = new System.Drawing.Size(800, 450);
+            this.login1.TabIndex = 11;
+            // 
+            // searchStudent1
+            // 
+            this.searchStudent1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.searchStudent1.Location = new System.Drawing.Point(1, -2);
+            this.searchStudent1.Name = "searchStudent1";
+            this.searchStudent1.Size = new System.Drawing.Size(800, 450);
+            this.searchStudent1.TabIndex = 12;
+            // 
             // Secretariat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.searchStudent1);
+            this.Controls.Add(this.login1);
+            this.Controls.Add(this.addStudent1);
             this.Controls.Add(this.CaptchaCheck);
             this.Controls.Add(this.PasswordInput);
             this.Controls.Add(this.UserInput);
@@ -170,5 +199,8 @@
         private TextBox UserInput;
         private TextBox PasswordInput;
         private TextBox CaptchaCheck;
+        private AddStudent addStudent1;
+        private Login login1;
+        private SearchStudent searchStudent1;
     }
 }

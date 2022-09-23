@@ -24,6 +24,7 @@ namespace Sekretariat
             // Login
             // 
             this.Name = "Login";
+            this.Size = new System.Drawing.Size(800, 450);
             this.ResumeLayout(false);
 
         }
