@@ -19,5 +19,16 @@
             }
             base.Dispose(disposing);
         }
+
+        private TextBox CaptchaCheck;
+        private TextBox PasswordInput;
+        private TextBox UserInput;
+        private Button SignIn;
+        private PictureBox CaptchaBox;
+        private Label RandomCaptcha;
+        private Label InstructionLabel;
+        private Label VerificationLabel;
+        private Label PasswordLabel;
+        private Label UserLabel;
     }
 }
