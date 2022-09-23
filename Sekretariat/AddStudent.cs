@@ -16,5 +16,11 @@ namespace Sekretariat
         {
             InitializeComponent();
         }
+
+        private void addStudentButton_Click(object sender, EventArgs e)
+        {
+            var line = classInput.Text + " " + firstNameInput.Text + " " + lastNameInput.Text;
+            File.AppendAllText(@"C:\File\file.txt", line + Environment.NewLine);
+        }
     }
 }

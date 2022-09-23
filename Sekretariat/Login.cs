@@ -17,8 +17,6 @@ namespace Sekretariat
             InitializeComponent();
         }
 
-       
-
         public string captcha = "mxyxw";
         public void RandomImage()
         {

@@ -37,12 +37,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.firstNameInput = new System.Windows.Forms.TextBox();
+            this.lastNameInput = new System.Windows.Forms.TextBox();
+            this.classInput = new System.Windows.Forms.TextBox();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.lastNameLabel = new System.Windows.Forms.Label();
+            this.classLabel = new System.Windows.Forms.Label();
+            this.addStudentButton = new System.Windows.Forms.Button();
             this.StudentTab.SuspendLayout();
             this.SearchStudentTab.SuspendLayout();
             this.AddStudentTab.SuspendLayout();
@@ -76,12 +77,13 @@
             // 
             // AddStudentTab
             // 
-            this.AddStudentTab.Controls.Add(this.label3);
-            this.AddStudentTab.Controls.Add(this.label2);
-            this.AddStudentTab.Controls.Add(this.label1);
-            this.AddStudentTab.Controls.Add(this.textBox4);
-            this.AddStudentTab.Controls.Add(this.textBox3);
-            this.AddStudentTab.Controls.Add(this.textBox2);
+            this.AddStudentTab.Controls.Add(this.addStudentButton);
+            this.AddStudentTab.Controls.Add(this.classLabel);
+            this.AddStudentTab.Controls.Add(this.lastNameLabel);
+            this.AddStudentTab.Controls.Add(this.nameLabel);
+            this.AddStudentTab.Controls.Add(this.classInput);
+            this.AddStudentTab.Controls.Add(this.lastNameInput);
+            this.AddStudentTab.Controls.Add(this.firstNameInput);
             this.AddStudentTab.Location = new System.Drawing.Point(4, 24);
             this.AddStudentTab.Name = "AddStudentTab";
             this.AddStudentTab.Padding = new System.Windows.Forms.Padding(3);
@@ -143,53 +145,66 @@
             this.textBox1.Size = new System.Drawing.Size(153, 23);
             this.textBox1.TabIndex = 6;
             // 
-            // textBox2
+            // firstNameInput
             // 
-            this.textBox2.Location = new System.Drawing.Point(286, 107);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(207, 23);
-            this.textBox2.TabIndex = 0;
+            this.firstNameInput.Location = new System.Drawing.Point(321, 112);
+            this.firstNameInput.Name = "firstNameInput";
+            this.firstNameInput.Size = new System.Drawing.Size(207, 23);
+            this.firstNameInput.TabIndex = 0;
             // 
-            // textBox3
+            // lastNameInput
             // 
-            this.textBox3.Location = new System.Drawing.Point(286, 169);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(207, 23);
-            this.textBox3.TabIndex = 1;
+            this.lastNameInput.Location = new System.Drawing.Point(321, 156);
+            this.lastNameInput.Name = "lastNameInput";
+            this.lastNameInput.Size = new System.Drawing.Size(207, 23);
+            this.lastNameInput.TabIndex = 1;
             // 
-            // textBox4
+            // classInput
             // 
-            this.textBox4.Location = new System.Drawing.Point(286, 237);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(207, 23);
-            this.textBox4.TabIndex = 2;
+            this.classInput.Location = new System.Drawing.Point(321, 200);
+            this.classInput.Name = "classInput";
+            this.classInput.Size = new System.Drawing.Size(207, 23);
+            this.classInput.TabIndex = 2;
             // 
-            // label1
+            // nameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(193, 110);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Imię";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.nameLabel.Location = new System.Drawing.Point(194, 109);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(49, 25);
+            this.nameLabel.TabIndex = 3;
+            this.nameLabel.Text = "Imię";
             // 
-            // label2
+            // lastNameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(193, 172);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
+            this.lastNameLabel.AutoSize = true;
+            this.lastNameLabel.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lastNameLabel.Location = new System.Drawing.Point(194, 153);
+            this.lastNameLabel.Name = "lastNameLabel";
+            this.lastNameLabel.Size = new System.Drawing.Size(93, 25);
+            this.lastNameLabel.TabIndex = 4;
+            this.lastNameLabel.Text = "Nazwisko";
             // 
-            // label3
+            // classLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(193, 240);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.classLabel.AutoSize = true;
+            this.classLabel.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.classLabel.Location = new System.Drawing.Point(194, 197);
+            this.classLabel.Name = "classLabel";
+            this.classLabel.Size = new System.Drawing.Size(57, 25);
+            this.classLabel.TabIndex = 5;
+            this.classLabel.Text = "Klasa";
+            // 
+            // addStudentButton
+            // 
+            this.addStudentButton.Location = new System.Drawing.Point(453, 255);
+            this.addStudentButton.Name = "addStudentButton";
+            this.addStudentButton.Size = new System.Drawing.Size(75, 23);
+            this.addStudentButton.TabIndex = 6;
+            this.addStudentButton.Text = "Dodaj";
+            this.addStudentButton.UseVisualStyleBackColor = true;
+            this.addStudentButton.Click += new System.EventHandler(this.addStudentButton_Click);
             // 
             // AddStudent
             // 
@@ -219,11 +234,12 @@
         private Button button1;
         private RichTextBox richTextBox1;
         private TextBox textBox1;
-        private Label label3;
-        private Label label2;
-        private Label label1;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private Label classLabel;
+        private Label lastNameLabel;
+        private Label nameLabel;
+        private TextBox classInput;
+        private TextBox lastNameInput;
+        private TextBox firstNameInput;
+        private Button addStudentButton;
     }
 }
