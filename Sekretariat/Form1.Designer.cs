@@ -37,14 +37,14 @@
             // AddStudent
             // 
             this.AddStudent.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.AddStudent.Location = new System.Drawing.Point(1, 374);
+            this.AddStudent.Location = new System.Drawing.Point(0, -2);
             this.AddStudent.Name = "AddStudent";
             this.AddStudent.Size = new System.Drawing.Size(800, 450);
             this.AddStudent.TabIndex = 10;
             // 
             // loginAdmin
             // 
-            this.loginAdmin.Location = new System.Drawing.Point(1, 403);
+            this.loginAdmin.Location = new System.Drawing.Point(0, -2);
             this.loginAdmin.Name = "loginAdmin";
             this.loginAdmin.Size = new System.Drawing.Size(800, 450);
             this.loginAdmin.TabIndex = 11;
@@ -52,7 +52,7 @@
             // SearchStudent
             // 
             this.SearchStudent.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.SearchStudent.Location = new System.Drawing.Point(1, 374);
+            this.SearchStudent.Location = new System.Drawing.Point(0, -2);
             this.SearchStudent.Name = "SearchStudent";
             this.SearchStudent.Size = new System.Drawing.Size(800, 450);
             this.SearchStudent.TabIndex = 12;
