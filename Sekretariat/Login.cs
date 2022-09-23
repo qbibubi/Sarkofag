@@ -63,6 +63,7 @@ namespace Sekretariat
             this.SignIn.TabIndex = 16;
             this.SignIn.Text = "Zaloguj";
             this.SignIn.UseVisualStyleBackColor = true;
+            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
             // 
             // CaptchaBox
             // 
@@ -185,6 +186,10 @@ namespace Sekretariat
         {
             RandomImage();
         }
+
+        public delegate void deleset(bool _bool);
+        public event deleset delevent;
+
         private void SignIn_Click(object sender, EventArgs e)
         {
             string log = "admin";
@@ -204,5 +209,6 @@ namespace Sekretariat
                 RandomImage();
             }
         }
+
     }
 }
