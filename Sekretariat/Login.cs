@@ -63,7 +63,6 @@ namespace Sekretariat
             this.SignIn.TabIndex = 16;
             this.SignIn.Text = "Zaloguj";
             this.SignIn.UseVisualStyleBackColor = true;
-            this.SignIn.Click += new System.EventHandler(this.SignIn_Click);
             // 
             // CaptchaBox
             // 
@@ -83,7 +82,6 @@ namespace Sekretariat
             this.RandomCaptcha.Size = new System.Drawing.Size(62, 15);
             this.RandomCaptcha.TabIndex = 14;
             this.RandomCaptcha.Text = "losuj nowy";
-            this.RandomCaptcha.Click += new System.EventHandler(this.RandomCaptcha_Click);
             // 
             // InstructionLabel
             // 
