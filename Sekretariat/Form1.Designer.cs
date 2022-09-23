@@ -69,7 +69,6 @@
             this.Name = "Secretariat";
             this.Text = "Sekretariat";
             this.ResumeLayout(false);
-
         }
 
         #endregion
