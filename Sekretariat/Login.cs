@@ -12,8 +12,6 @@ namespace Sekretariat
 {
     public partial class Login : UserControl
     {
-
-
         public Login()
         {
             InitializeComponent();
