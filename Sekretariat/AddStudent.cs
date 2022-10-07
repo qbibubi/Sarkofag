@@ -47,7 +47,9 @@ namespace Sekretariat
                     {
                         if (line.Equals(search))
                         {
+                            searchData.Clear();
                             output = line + System.Environment.NewLine;
+                            searchData.Text += output;
                         }
                     }
                     break;
@@ -56,7 +58,9 @@ namespace Sekretariat
                     {
                         if (line.StartsWith(search))
                         {
+                            searchData.Clear();
                             output = line + System.Environment.NewLine;
+                            searchData.Text += output;
                         }
                     }
                     break;
@@ -65,12 +69,14 @@ namespace Sekretariat
                     {
                         if(line.Contains(search))
                         {
+                            searchData.Clear();
                             output = line + System.Environment.NewLine;
+                            searchData.Text += output;
                         }
                     }
                     break;
             }
-            searchData.Text += output;
+            
         }
     }
 }
