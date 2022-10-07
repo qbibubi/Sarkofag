@@ -34,8 +34,8 @@
             this.startsWith = new System.Windows.Forms.ComboBox();
             this.studentName = new System.Windows.Forms.ComboBox();
             this.search_button = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchData = new System.Windows.Forms.RichTextBox();
+            this.searchInput = new System.Windows.Forms.TextBox();
             this.AddStudentTab = new System.Windows.Forms.TabPage();
             this.addStudentButton = new System.Windows.Forms.Button();
             this.classLabel = new System.Windows.Forms.Label();
@@ -65,8 +65,8 @@
             this.SearchStudentTab.Controls.Add(this.startsWith);
             this.SearchStudentTab.Controls.Add(this.studentName);
             this.SearchStudentTab.Controls.Add(this.search_button);
-            this.SearchStudentTab.Controls.Add(this.richTextBox1);
-            this.SearchStudentTab.Controls.Add(this.textBox1);
+            this.SearchStudentTab.Controls.Add(this.searchData);
+            this.SearchStudentTab.Controls.Add(this.searchInput);
             this.SearchStudentTab.Location = new System.Drawing.Point(4, 24);
             this.SearchStudentTab.Name = "SearchStudentTab";
             this.SearchStudentTab.Padding = new System.Windows.Forms.Padding(3);
@@ -119,20 +119,20 @@
             this.search_button.UseVisualStyleBackColor = true;
             this.search_button.Click += new System.EventHandler(this.search_button_Click);
             // 
-            // richTextBox1
+            // searchData
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 142);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(777, 261);
-            this.richTextBox1.TabIndex = 7;
-            this.richTextBox1.Text = "";
+            this.searchData.Location = new System.Drawing.Point(6, 142);
+            this.searchData.Name = "searchData";
+            this.searchData.Size = new System.Drawing.Size(777, 261);
+            this.searchData.TabIndex = 7;
+            this.searchData.Text = "";
             // 
-            // textBox1
+            // searchInput
             // 
-            this.textBox1.Location = new System.Drawing.Point(551, 58);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(153, 23);
-            this.textBox1.TabIndex = 6;
+            this.searchInput.Location = new System.Drawing.Point(551, 58);
+            this.searchInput.Name = "searchInput";
+            this.searchInput.Size = new System.Drawing.Size(153, 23);
+            this.searchInput.TabIndex = 6;
             // 
             // AddStudentTab
             // 
@@ -238,8 +238,8 @@
         private ComboBox startsWith;
         private ComboBox studentName;
         private Button search_button;
-        private RichTextBox richTextBox1;
-        private TextBox textBox1;
+        private RichTextBox searchData;
+        private TextBox searchInput;
         private Label classLabel;
         private Label lastNameLabel;
         private Label nameLabel;
