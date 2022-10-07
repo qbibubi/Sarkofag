@@ -19,8 +19,18 @@ namespace Sekretariat
 
         private void addStudentButton_Click(object sender, EventArgs e)
         {
+            var path = @"C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\dane.txt";
             var line = classInput.Text + " " + firstNameInput.Text + " " + lastNameInput.Text;
-            File.AppendAllText(@"C:\File\file.txt", line + Environment.NewLine);
+            
+            if (!File.Exists(path))
+            {
+                File.Create(path).Dispose();
+                File.AppendAllLines(path, new[] { line });
+            }
+            else if (File.Exists(path))
+            {
+                File.AppendAllLines(path, new[] { line });
+            }
         }
 
         private void search_button_Click(object sender, EventArgs e)
