@@ -22,5 +22,10 @@ namespace Sekretariat
             var line = classInput.Text + " " + firstNameInput.Text + " " + lastNameInput.Text;
             File.AppendAllText(@"C:\File\file.txt", line + Environment.NewLine);
         }
+
+        private void search_button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

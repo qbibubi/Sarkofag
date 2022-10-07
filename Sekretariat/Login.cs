@@ -12,6 +12,8 @@ namespace Sekretariat
 {
     public partial class Login : UserControl
     {
+
+
         public Login()
         {
             InitializeComponent();
@@ -61,9 +63,6 @@ namespace Sekretariat
             RandomImage();
         }
 
-        public delegate void deleset(bool _bool);
-        public event deleset delevent;
-
         private void SignIn_Click(object sender, EventArgs e)
         {
             var log = "admin";
@@ -73,7 +72,7 @@ namespace Sekretariat
 
             if (login && matchCap)
             {
-                // swap to other user control   
+                this.Hide();
             }
             else
             {
