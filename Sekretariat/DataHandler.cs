@@ -13,31 +13,21 @@ namespace Sekretariat
         MySqlConnection conn;
         static string host = "localhost";
         static string db = "sarkofag";
-        static string userDB = "s004-pc06\\student";
-        public static string provider = 
-            "server=" + host + 
-            ";Database=" + db + 
-            ";User ID=" + userDB + 
-            ";Password=''; SSL Mode=None;Convert Zero Datetime=True;";
+        static string user = "root";
+        public static string connString = "server="+host+";database="+db+";uid="+user+";pwd=\"\";";
 
         public bool Open()
         {
             try
             {
-                provider = 
-                    "server=" + host + 
-                    ";Database=" + db + 
-                    ";User ID=" + userDB + 
-                    ";SSL Mode=None;Convert Zero Datetime=True;";
-
-                conn = new MySqlConnection(provider);
+                conn = new MySqlConnection(connString);
                 conn.Open();
 
                 return true;
             }
             catch (Exception er)
             {
-                MessageBox.Show("connect1ection Error ! " + er.Message, "Information");
+                MessageBox.Show("Connection Error ! " + er.Message, "Information");
             }
 
             return false;
@@ -56,7 +46,7 @@ namespace Sekretariat
                 DataSet ds = new DataSet();
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
 
-                da.Fill(ds, "result");
+                da.Fill(ds, "Result");
 
                 return ds;
             }
