@@ -17,6 +17,7 @@ namespace Sekretariat
         public AddStudent()
         {
             InitializeComponent();
+            conn.Open();
         }
 
         public string path = @"C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\dane.txt";
@@ -37,7 +38,7 @@ namespace Sekretariat
             }
 
             // Database solution
-
+           
         }
 
         private void search_button_Click(object sender, EventArgs e)
@@ -53,8 +54,11 @@ namespace Sekretariat
                     {
                         if (line.Equals(search))
                         {
+                            // clearuje textbox
                             searchData.Clear();
+                            // zesplitowany text dodaje newline
                             var output = line + System.Environment.NewLine;
+                            // dodaje odpowiednia ilosc linijek do textboxa
                             searchData.Text += output;
                         }
                     }

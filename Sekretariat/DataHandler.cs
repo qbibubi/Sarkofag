@@ -12,13 +12,13 @@ namespace Sekretariat
     {
         MySqlConnection conn;
         static string host = "localhost";
-        static string db = "kolejka";
-        static string userDB = "root";
+        static string db = "sarkofag";
+        static string userDB = "s004-pc06\\student";
         public static string provider = 
             "server=" + host + 
             ";Database=" + db + 
             ";User ID=" + userDB + 
-            ";SSL Mode=None;Convert Zero Datetime=True;";
+            ";Password=''; SSL Mode=None;Convert Zero Datetime=True;";
 
         public bool Open()
         {
