@@ -12,6 +12,8 @@ namespace Sekretariat
 {
     public partial class AddStudent : UserControl
     {
+        DataHandler conn = new DataHandler();
+
         public AddStudent()
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace Sekretariat
 
         private void addStudentButton_Click(object sender, EventArgs e)
         {
+            // Text file based solution
             var line = classInput.Text + " " + firstNameInput.Text + " " + lastNameInput.Text;
             
             if (!File.Exists(path))
@@ -32,14 +35,17 @@ namespace Sekretariat
             {
                 File.AppendAllLines(path, new[] { line });
             }
+
+            // Database solution
+
         }
 
         private void search_button_Click(object sender, EventArgs e)
         {
             var choice = startsWith.Text;
             var search = searchInput.Text;
-            var output = "";
-
+            
+            // Text file based solution
             switch (choice)
             {
                 case "równe":
@@ -48,7 +54,7 @@ namespace Sekretariat
                         if (line.Equals(search))
                         {
                             searchData.Clear();
-                            output = line + System.Environment.NewLine;
+                            var output = line + System.Environment.NewLine;
                             searchData.Text += output;
                         }
                     }
@@ -59,7 +65,7 @@ namespace Sekretariat
                         if (line.StartsWith(search))
                         {
                             searchData.Clear();
-                            output = line + System.Environment.NewLine;
+                            var output = line + System.Environment.NewLine;
                             searchData.Text += output;
                         }
                     }
@@ -70,13 +76,15 @@ namespace Sekretariat
                         if(line.Contains(search))
                         {
                             searchData.Clear();
-                            output = line + System.Environment.NewLine;
+                            var output = line + System.Environment.NewLine;
                             searchData.Text += output;
                         }
                     }
                     break;
             }
             
+            // Database solution
+
         }
     }
 }
