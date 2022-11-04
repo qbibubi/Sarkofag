@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,82 +13,39 @@ namespace Sekretariat
 {
     public partial class AddStudent : UserControl
     {
-        DataHandler conn = new DataHandler();
+        public class Student
+        {
+            public string StudentName { get; set; }
+            public string StudentLastName { get; set; }
+            public string StudentClass { get; set; }
+        }
+
+        public List<Student> students;
+        public string path = @"C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\dane.txt";
 
         public AddStudent()
         {
             InitializeComponent();
-            conn.Open();
+            students = JsonSerializer.Deserialize<List<Student>>(File.ReadAllText(path));
         }
-
-        public string path = @"C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\dane.txt";
 
         private void addStudentButton_Click(object sender, EventArgs e)
         {
-            // Text file based solution
-            var line = classInput.Text + " " + firstNameInput.Text + " " + lastNameInput.Text;
-            
-            if (!File.Exists(path))
+            Student student = new Student()
             {
-                File.Create(path).Dispose();
-                File.AppendAllLines(path, new[] { line });
-            }
-            else if (File.Exists(path))
-            {
-                File.AppendAllLines(path, new[] { line });
-            }
+                StudentName = firstNameInput.Text,
+                StudentLastName = lastNameInput.Text,
+                StudentClass = classInput.Text
+            };
 
-            // Database solution
-           
+            students.Add(student);
+            File.WriteAllText(path, JsonSerializer.Serialize(students));
         }
 
         private void search_button_Click(object sender, EventArgs e)
         {
-            var choice = startsWith.Text;
-            var search = searchInput.Text;
-            
-            // Text file based solution
-            switch (choice)
-            {
-                case "równe":
-                    foreach (var line in File.ReadAllLines(path))
-                    {
-                        if (line.Equals(search))
-                        {
-                            // clearuje textbox
-                            searchData.Clear();
-                            // zesplitowany text dodaje newline
-                            var output = line + System.Environment.NewLine;
-                            // dodaje odpowiednia ilosc linijek do textboxa
-                            searchData.Text += output;
-                        }
-                    }
-                    break;
-                case "rozpoczyna się od":
-                    foreach (var line in File.ReadAllLines(path))
-                    {
-                        if (line.StartsWith(search))
-                        {
-                            searchData.Clear();
-                            var output = line + System.Environment.NewLine;
-                            searchData.Text += output;
-                        }
-                    }
-                    break;
-                case "zawiera":
-                    foreach (var line in File.ReadAllLines(path))
-                    {
-                        if(line.Contains(search))
-                        {
-                            searchData.Clear();
-                            var output = line + System.Environment.NewLine;
-                            searchData.Text += output;
-                        }
-                    }
-                    break;
-            }
-            
-            // Database solution
+
+
 
         }
     }
