@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -44,9 +45,41 @@ namespace Sekretariat
 
         private void search_button_Click(object sender, EventArgs e)
         {
+            var StudentInfo = studentName.Text;
+            var SearchInfo = startsWith.Text;
+            var SearchBarText = searchInput.Text;
+            List<string> strings;
 
+            switch (StudentInfo)
+            {
+                case "Imię":
+                    strings = students.Select(x => x.StudentName).ToList();
+                    break;
+                case "Nazwisko":
+                    strings = students.Select(x => x.StudentLastName).ToList();
+                    break;
+                case "Klasa":
+                    strings = students.Select(x => x.StudentClass).ToList();
+                    break;
+                default:
+                    return;
+            }
 
-
+            var outcome = "";
+            switch (SearchInfo)
+            {
+                case "równe":
+                    outcome = strings.Find(x => x.Equals(SearchBarText));
+                    break;
+                case "rozpoczyna się od":
+                    outcome = strings.Find(x => x.StartsWith(SearchBarText));
+                    break;
+                case "zawiera":
+                    outcome = strings.Find(x => x.Contains(SearchBarText));
+                    break;
+                default:
+                    return;
+            }
         }
     }
 }

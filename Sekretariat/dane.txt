@@ -1,9 +1,1 @@
-asd asd asd
-4pr Anna Naan
-4pr Anna aaaaa
-4pr Anna bbbb
-4pr bbbb bbbb
-4pr bbbb aaaa
-23 bbbb aaaa
-2a bbbb aaaa
-a2 bbbb aaaa
+[{"StudentName":"Adam","StudentLastName":"Nigd","StudentClass":"2pr"},{"StudentName":"Jakub","StudentLastName":"Sobieraj","StudentClass":"4pr"},{"StudentName":"Mikolaj","StudentLastName":"Adamski","StudentClass":"4pr"},{"StudentName":"Sergiej","StudentLastName":"Dworzec","StudentClass":"3pr"},{"StudentName":"Oktawian","StudentLastName":"Segied","StudentClass":"1pr"}]
