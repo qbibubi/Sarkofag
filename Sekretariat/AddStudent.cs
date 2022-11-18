@@ -16,135 +16,37 @@ namespace Sekretariat
 {
     public partial class AddStudent : UserControl
     {
-        SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\student\\source\\repos\\qbibubi\\Sarkofag\\Sekretariat\\student.mdf;Integrated Security=True");
-        public string path = @"C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\dane.txt";
-        public string text = "";
-        public int last = 0;
-
         public AddStudent()
         {
             InitializeComponent();
-            text = System.IO.File.ReadAllText(path);
         }
 
         private void addStudentButton_Click(object sender, EventArgs e)
         {
-            text = System.IO.File.ReadAllText(path);
-            TextWriter txt = new StreamWriter(path);
-            last++;
+            if (firstNameInput.Text != "" || lastNameInput.Text != "" || classInput.Text != "")
+            {
+                using(var connection1 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\student.mdf;Integrated Security=True"))
+                using(var cmd = new SqlDataAdapter())
+                using(var insertCommand = new SqlCommand("INSERT INTO [students](first_name, last_name, class) VALUES(@name, @lname, @class)"))
+                {
+                    insertCommand.Connection = connection1;
+                    cmd.InsertCommand = insertCommand;
+                    cmd.InsertCommand.Parameters.AddWithValue("@name", firstNameInput.Text);
+                    cmd.InsertCommand.Parameters.AddWithValue("@lname", lastNameInput.Text);
+                    cmd.InsertCommand.Parameters.AddWithValue("@class", classInput.Text);
+                    connection1.Open();
+                    cmd.InsertCommand.ExecuteNonQuery();
+                }
 
-            string data = text + System.Environment.NewLine
-                          + last.ToString() + " " 
-                          + firstNameInput.Text + " " 
-                          + lastNameInput.Text + " " 
-                          + classInput.Text + " ";
-
-            txt.Write(data);
-            txt.Close();
+                firstNameInput.Clear();
+                lastNameInput.Clear();
+                classInput.Clear();
+            }
         }
 
         private void search_button_Click(object sender, EventArgs e)
         {
-            searchData.Clear();
-            string text = File.ReadAllText(path);
-            string[] lines = text.Split(Environment.NewLine);
-
-            object obiekt = studentName.SelectedItem;
-            string kategoria = Convert.ToString(obiekt);
-
-            object obiekt2 = startsWith.SelectedItem;
-            string kategoria2 = Convert.ToString(obiekt2);
-
-            foreach (string line in lines)
-            {
-                
-                if (kategoria == "Imię")
-                {
-                    
-                    if (kategoria2 == "rozpoczyna się od")
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[1].Substring(0, 1) == searchInput.Text.Substring(0, 1))
-                        {
-                            searchData.Text += System.Environment.NewLine+ line;
-                        }
-
-                    }
-                    else if(kategoria2 == "zawiera")
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[1].Contains(searchInput.Text))
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-                    }
-                    else
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[1] == searchInput.Text)
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-                    }
-                }else if (kategoria == "Nazwisko")
-                {
-
-                    if (kategoria2 == "rozpoczyna się od")
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[2].Substring(0, 1) == searchInput.Text.Substring(0, 1))
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-
-                    }
-                    else if (kategoria2 == "zawiera")
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[2].Contains(searchInput.Text))
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-                    }
-                    else
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[2] == searchInput.Text)
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-                    }
-                }
-                else if (kategoria == "Klasa")
-                {
-
-                    if (kategoria2 == "rozpoczyna się od")
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[3].Substring(0, 1) == searchInput.Text.Substring(0, 1))
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-
-                    }
-                    else if (kategoria2 == "zawiera")
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[3].Contains(searchInput.Text))
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-                    }
-                    else
-                    {
-                        string[] ssize = line.Split(null); //Or myStr.Split()
-                        if (ssize[3] == searchInput.Text)
-                        {
-                            searchData.Text += System.Environment.NewLine + line;
-                        }
-                    }
-                }
-            }
+           
         }
 
 
