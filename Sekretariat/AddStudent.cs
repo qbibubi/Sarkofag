@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Sekretariat
 {
     public partial class AddStudent : UserControl
     {
+        SqlConnection sql = new SqlConnection(@"Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\student\\source\\repos\\qbibubi\\Sarkofag\\Sekretariat\\student.mdf;Integrated Security=True");
         public string path = @"C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\dane.txt";
         public string text = "";
         public int last = 0;
@@ -144,5 +146,7 @@ namespace Sekretariat
                 }
             }
         }
+
+
     }
 }

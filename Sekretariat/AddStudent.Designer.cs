@@ -211,6 +211,7 @@
             this.firstNameInput.Name = "firstNameInput";
             this.firstNameInput.Size = new System.Drawing.Size(207, 23);
             this.firstNameInput.TabIndex = 0;
+            this.firstNameInput.TextChanged += new System.EventHandler(this.firstNameInput_TextChanged);
             // 
             // AddStudent
             // 
