@@ -9,76 +9,139 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Sekretariat
 {
     public partial class AddStudent : UserControl
     {
-        public class Student
-        {
-            public string StudentName { get; set; }
-            public string StudentLastName { get; set; }
-            public string StudentClass { get; set; }
-        }
-
-        public List<Student> students;
         public string path = @"C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\dane.txt";
+        public string text = "";
+        public int last = 0;
 
         public AddStudent()
         {
             InitializeComponent();
-            students = JsonSerializer.Deserialize<List<Student>>(File.ReadAllText(path));
+            text = System.IO.File.ReadAllText(path);
         }
 
         private void addStudentButton_Click(object sender, EventArgs e)
         {
-            Student student = new Student()
-            {
-                StudentName = firstNameInput.Text,
-                StudentLastName = lastNameInput.Text,
-                StudentClass = classInput.Text
-            };
+            text = System.IO.File.ReadAllText(path);
+            TextWriter txt = new StreamWriter(path);
+            last++;
 
-            students.Add(student);
-            File.WriteAllText(path, JsonSerializer.Serialize(students));
+            string data = text + System.Environment.NewLine
+                          + last.ToString() + " " 
+                          + firstNameInput.Text + " " 
+                          + lastNameInput.Text + " " 
+                          + classInput.Text + " ";
+
+            txt.Write(data);
+            txt.Close();
         }
 
         private void search_button_Click(object sender, EventArgs e)
         {
-            var StudentInfo = studentName.Text;
-            var SearchInfo = startsWith.Text;
-            var SearchBarText = searchInput.Text;
-            List<string> strings;
+            searchData.Clear();
+            string text = File.ReadAllText(path);
+            string[] lines = text.Split(Environment.NewLine);
 
-            switch (StudentInfo)
-            {
-                case "Imię":
-                    strings = students.Select(x => x.StudentName).ToList();
-                    break;
-                case "Nazwisko":
-                    strings = students.Select(x => x.StudentLastName).ToList();
-                    break;
-                case "Klasa":
-                    strings = students.Select(x => x.StudentClass).ToList();
-                    break;
-                default:
-                    return;
-            }
+            object obiekt = studentName.SelectedItem;
+            string kategoria = Convert.ToString(obiekt);
 
-            var outcome = "";
-            switch (SearchInfo)
+            object obiekt2 = startsWith.SelectedItem;
+            string kategoria2 = Convert.ToString(obiekt2);
+
+            foreach (string line in lines)
             {
-                case "równe":
-                    outcome = strings.Find(x => x.Equals(SearchBarText));
-                    break;
-                case "rozpoczyna się od":
-                    outcome = strings.Find(x => x.StartsWith(SearchBarText));
-                    break;
-                case "zawiera":
-                    outcome = strings.Find(x => x.Contains(SearchBarText));
-                    break;
-                default:
-                    return;
+                
+                if (kategoria == "Imię")
+                {
+                    
+                    if (kategoria2 == "rozpoczyna się od")
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[1].Substring(0, 1) == searchInput.Text.Substring(0, 1))
+                        {
+                            searchData.Text += System.Environment.NewLine+ line;
+                        }
+
+                    }
+                    else if(kategoria2 == "zawiera")
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[1].Contains(searchInput.Text))
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+                    }
+                    else
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[1] == searchInput.Text)
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+                    }
+                }else if (kategoria == "Nazwisko")
+                {
+
+                    if (kategoria2 == "rozpoczyna się od")
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[2].Substring(0, 1) == searchInput.Text.Substring(0, 1))
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+
+                    }
+                    else if (kategoria2 == "zawiera")
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[2].Contains(searchInput.Text))
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+                    }
+                    else
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[2] == searchInput.Text)
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+                    }
+                }
+                else if (kategoria == "Klasa")
+                {
+
+                    if (kategoria2 == "rozpoczyna się od")
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[3].Substring(0, 1) == searchInput.Text.Substring(0, 1))
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+
+                    }
+                    else if (kategoria2 == "zawiera")
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[3].Contains(searchInput.Text))
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+                    }
+                    else
+                    {
+                        string[] ssize = line.Split(null); //Or myStr.Split()
+                        if (ssize[3] == searchInput.Text)
+                        {
+                            searchData.Text += System.Environment.NewLine + line;
+                        }
+                    }
+                }
             }
         }
     }

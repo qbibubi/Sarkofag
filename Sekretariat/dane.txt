@@ -1,1 +1,6 @@
-[{"StudentName":"Adam","StudentLastName":"Nigd","StudentClass":"2pr"},{"StudentName":"Jakub","StudentLastName":"Sobieraj","StudentClass":"4pr"},{"StudentName":"Mikolaj","StudentLastName":"Adamski","StudentClass":"4pr"},{"StudentName":"Sergiej","StudentLastName":"Dworzec","StudentClass":"3pr"},{"StudentName":"Oktawian","StudentLastName":"Segied","StudentClass":"1pr"}]
+1 Adam Kowalski 3pr 
+2 Adam Kowalski 3pr 
+3 Adam Kowalski 4ai 
+4 Sebastian Kowalski 4ai 
+5 Sebastian Aramis 4ai 
+6 Aleks Szewczyk 1bi
