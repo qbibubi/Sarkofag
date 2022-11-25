@@ -16,10 +16,13 @@ namespace Sekretariat
 {
     public partial class AddStudent : UserControl
     {
+        public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True";
+        
         public AddStudent()
         {
             InitializeComponent();
         }
+
 
         private void addStudentButton_Click(object sender, EventArgs e)
         {
@@ -27,19 +30,20 @@ namespace Sekretariat
                 || lastNameInput.Text != "" 
                 || classInput.Text != "")
             {
-                using(var connection1 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                using(var cmd = new SqlDataAdapter())
-                using(var insertCommand = new SqlCommand("INSERT INTO [students](first_name, last_name, class) VALUES(@name, @lname, @class)"))
+                string query = "INSERT INTO [students](first_name, last_name, class) VALUES(@name, @lname, @class)";
+
+                using(var conn = new SqlConnection(connectionString))
+                using(var cmd = new SqlCommand(connectionString, conn))
                 {
-                    insertCommand.Connection = connection1;
-                    cmd.InsertCommand = insertCommand;
-                    cmd.InsertCommand.Parameters.AddWithValue("@name", firstNameInput.Text);
-                    cmd.InsertCommand.Parameters.AddWithValue("@lname", lastNameInput.Text);
-                    cmd.InsertCommand.Parameters.AddWithValue("@class", classInput.Text);
-                    
-                    // Open connection and execute query
-                    connection1.Open();
-                    cmd.InsertCommand.ExecuteNonQuery();
+                    conn.Open();
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@name", firstNameInput.Text);
+                    cmd.Parameters.AddWithValue("@lname", lastNameInput.Text);
+                    cmd.Parameters.AddWithValue("@class", classInput.Text);
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
                 }
 
                 // Clear inputs
@@ -92,12 +96,13 @@ namespace Sekretariat
                             {
                                 query.Connection = conn;
                                 cmd.SelectCommand = query;
-
+                                 
                                 // Open connection and execute query
                                 conn.Open();
                                 cmd.InsertCommand.ExecuteNonQuery();
                             }
                         }
+
                         break;
                     case "Naziwsko":
                         if (startsWith.SelectedItem.ToString() == "zawiera")
