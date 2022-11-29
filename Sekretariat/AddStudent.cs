@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,7 @@ namespace Sekretariat
 {
     public partial class AddStudent : UserControl
     {
-        public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\student\source\repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True";
+        public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security = True";
         
         public AddStudent()
         {
@@ -59,136 +60,204 @@ namespace Sekretariat
                 || startsWith.SelectedItem.ToString() != "" 
                 || searchInput.Text != "")
             {
-                switch(startsWith.SelectedItem.ToString())
+                searchData.Clear();
+
+                switch(studentName.SelectedItem.ToString())
                 {
                     case "Imię":
                         if (startsWith.SelectedItem.ToString() == "zawiera")
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE first_name LIKE '%" + searchInput.Text + "%'"))
-                            {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                            string query = "SELECT * FROM [students] WHERE first_name LIKE '%" + searchInput.Text + "%'";
 
-                                // Open connection and execute query
-                                conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
-                            }
-                        } else if (startsWith.SelectedItem.ToString() == "rozpoczyna się od")
-                        {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE first_name LIKE '" + searchInput.Text + "%'"))
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
                             {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                                conn.Open();
+                                cmd.CommandText = query;
 
-                                // Open connection and execute query
-                                conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
-                        } else
+                        } 
+                        else if (startsWith.SelectedItem.ToString() == "rozpoczyna się od")
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE first_name='" + searchInput.Text + "'"))
+                            string query = "SELECT * FROM [students] WHERE first_name LIKE '" + searchInput.Text + "%'";
+
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
                             {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
-                                 
-                                // Open connection and execute query
                                 conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
+                            }
+                        } 
+                        else
+                        {
+                            string query = "SELECT * FROM [students] WHERE first_name='" + searchInput.Text + "'";
+
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
+                            {
+                                conn.Open();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
                         }
-
                         break;
+
                     case "Naziwsko":
                         if (startsWith.SelectedItem.ToString() == "zawiera")
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE last_name LIKE '%" + searchInput.Text + "%'"))
-                            {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                            string query = "SELECT * FROM [students] WHERE last_name LIKE '%" + searchInput.Text + "%'";
 
-                                // Open connection and execute query
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
+                            {
                                 conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
                         }
                         else if (startsWith.SelectedItem.ToString() == "rozpoczyna się od")
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE last_name LIKE '" + searchInput.Text + "%'"))
-                            {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                            string query = "SELECT * FROM [students] WHERE last_name LIKE '" + searchInput.Text + "%'";
 
-                                // Open connection and execute query
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
+                            {
                                 conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
                         }
                         else
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE last_name='" + firstNameInput.Text + "'"))
-                            {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                            string query = "SELECT * FROM [students] WHERE last_name='" + firstNameInput.Text + "'";
 
-                                // Open connection and execute query
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
+                            {
                                 conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
                         }
                         break;
+
                     case "Klasa":
                         if (startsWith.SelectedItem.ToString() == "zawiera")
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE class LIKE '%" + searchInput.Text + "%'"))
-                            {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                            string query = "SELECT * FROM [students] WHERE class LIKE '%" + searchInput.Text + "%'";
 
-                                // Open connection and execute query
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
+                            {
                                 conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
                         }
                         else if (startsWith.SelectedItem.ToString() == "rozpoczyna się od")
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE class LIKE '" + searchInput.Text + "%'"))
-                            {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                            string query = "SELECT * FROM [students] WHERE class LIKE '" + searchInput.Text + "%'";
 
-                                // Open connection and execute query
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
+                            {
                                 conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
                         }
                         else
                         {
-                            using (var conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jakub\Source\Repos\qbibubi\Sarkofag\Sekretariat\students.mdf;Integrated Security=True"))
-                            using (var cmd = new SqlDataAdapter())
-                            using (var query = new SqlCommand("SELECT * FROM [students] WHERE class='" + searchInput.Text + "'"))
-                            {
-                                query.Connection = conn;
-                                cmd.SelectCommand = query;
+                            string query = "SELECT * FROM [students] WHERE class='" + searchInput.Text + "'";
 
-                                // Open connection and execute query
+                            using (var conn = new SqlConnection(connectionString))
+                            using (var cmd = new SqlCommand(connectionString, conn))
+                            {
                                 conn.Open();
-                                cmd.InsertCommand.ExecuteNonQuery();
+                                cmd.CommandText = query;
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        searchData.Text += reader["class"].ToString() + reader["first_name"].ToString() + reader["last_name"].ToString() + '\n';
+                                    }
+                                }
+
+                                conn.Close();
                             }
                         }
                         break;
